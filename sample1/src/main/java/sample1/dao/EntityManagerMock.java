@@ -37,7 +37,8 @@ public class EntityManagerMock {
 	public List<Lugar> getLugaresXY(Integer x, Integer y , Integer radio){
 		return lugares.stream().filter(lugar -> HelperVarios.filtraDistancia(lugar,x,y,radio)).collect(Collectors.toList());
 	}
-	
-	
-	
+
+	public void consultarStockCervezaYgenteParaLugares(List<Lugar> lugaresXY) {
+		
+	}
 }

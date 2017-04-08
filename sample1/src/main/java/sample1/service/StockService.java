@@ -58,18 +58,25 @@ public class StockService {
 		return emMock.getLugares();
 	}
 
+	/**
+	 * por default devuelve con un radio de 5 KM
+	 * @param x
+	 * @param y
+	 * @param tipoCervezasParsed
+	 * @return
+	 */
 	// que bares tienen growler para la ubicacion: growl + lugar a partir del:
 	// ubicacion.
 	public List<LugarStock> getLugaresGrowlerByUbicacion(Integer x, Integer y, List<Cerveza> tipoCervezasParsed) {
 		List<LugarStock> ret = null;
 
-		Integer radio = 1; // 1 km , TODO: ver de si lo paso por parametro o no.
+		Integer radio = 5; // 1 km , TODO: ver de si lo paso por parametro o no.
 		// dame los lugares cerca de x/y
 		List<Lugar> lugaresXY = emMock.getLugaresXY(x, y, radio);
 
-		
-
 		// de esos , cuales tienen cerveza de la lista.
+		emMock.consultarStockCervezaYgenteParaLugares(lugaresXY);
+		
 
 		return ret;
 	}

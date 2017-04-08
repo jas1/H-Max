@@ -98,7 +98,9 @@ public class SampleRest {
     	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
     	
     	// dame la lista de cervezas segun si estan en la query.
-    	// FIXME:: desventaja si no esta en la query no va a devolver > lo cual seria obvio porque las cervezas estan siempre en la lista !
+    	// FIXME:: desventaja si no esta en la query no va a devolver 
+//    	> lo cual seria obvio que tiene que devolver porque las cervezas estan siempre en la lista !
+//    	> sino devuelve es potencial otro origen que nos ea lo que esperamos
     	List<Cerveza> tipoCervezasParsed = stockService.getCervezas().stream()
     			.filter(beer-> Arrays.asList(tipoCervezas.split("-")).contains(beer.getCodigo())).collect(Collectors.toList());
 
