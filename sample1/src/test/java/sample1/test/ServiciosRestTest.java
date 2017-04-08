@@ -1,38 +1,28 @@
 package sample1.test;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
-import sample1.web.SessionBean;
+import sample1.service.StockService;
 
 public class ServiciosRestTest {
 
+	StockService stockService = new StockService();
 	
-	SessionBean sesion;
-	
-	/*
-	 * pantalla 1: 
-	 * elegis entre growler y si vas a tomar algo
-	 * 
-	 * no tiene magia , puro front end.
-	 * 
-	 */
 	@Test
-	public void pantalla1(){
+	public void testRest1(){
+//		mostrarCervezasDisponibles(); 
+		
+		String probandoTipo = "tipo1-tipo2-tipo3";
+		Arrays.asList(probandoTipo.split("-")).stream().forEach(System.out::println);
+
 		
 	}
+
+	private void mostrarCervezasDisponibles() {
+	}	
 	
-	/*
-	 * pantalla 2: 
-	 * a) cuantos growlers queres ? 
-	 * b) de que tipo ? 
-	 * c) 
-	 */
-	@Test
-	public void pantalla2aGrowler(){
-//		cuantos growlers
-		
-		
-		
-	}
+	
 	
 }

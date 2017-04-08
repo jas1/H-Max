@@ -8,6 +8,7 @@ public class Cerveza {
 	//País ARGENTINA
 	//Volumen 710ML
 	
+	private String codigo;
 	private String nombre;
 	private String descripcion;
 	private String estilo;
@@ -88,6 +89,12 @@ public class Cerveza {
 	}
 	public void setAptoTirada(Boolean aptoTirada) {
 		this.aptoTirada = aptoTirada;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 }

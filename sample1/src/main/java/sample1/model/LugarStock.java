@@ -1,9 +1,11 @@
 package sample1.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class LugarStock {
 
+	private Date timestampStock;
 	private Lugar lugar;
 	private Integer cantidadGente; // poca medio mucha ( banca N personas )
 	private Integer aproximadoEspera; // minutos
@@ -40,5 +42,13 @@ public class LugarStock {
 
 	public void setLugar(Lugar lugar) {
 		this.lugar = lugar;
+	}
+
+	public Date getTimestampStock() {
+		return timestampStock;
+	}
+
+	public void setTimestampStock(Date timestampStock) {
+		this.timestampStock = timestampStock;
 	}
 }

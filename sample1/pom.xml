@@ -47,6 +47,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.6.2</version>
 		</dependency>
+<<<<<<< HEAD
 
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -59,6 +60,8 @@
 			<artifactId>all-themes</artifactId>
 			<version>1.0.10</version>
 		</dependency>
+=======
+>>>>>>> master
 
 	</dependencies>
 
