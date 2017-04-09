@@ -17,7 +17,6 @@ import org.primefaces.model.map.Marker;
 
 import sample1.common.web.FacesUtils;
 import sample1.model.BarGrow;
-import sample1.model.Cerveza;
 import sample1.model.CervezaStock;
 import sample1.model.LugarStock;
 import sample1.service.StockService;
@@ -27,7 +26,7 @@ import sample1.service.StockService;
 @ManagedBean(name = "pantalla4Bean")
 public class Pantalla4Bean implements Serializable {
 
-	private static final String ESTAS_ACA = "Estas Aca";
+//	private static final String ESTAS_ACA = "Estas Aca";
 
 	@Inject
 	StockService stockService;
@@ -37,6 +36,7 @@ public class Pantalla4Bean implements Serializable {
 	private Marker marker;
 	private String cantidadGente;
 	private String cantidadCerveza;
+	private String tiempoEstimado;
 	
 	private String cantidadesImg;
 	
@@ -48,10 +48,10 @@ public class Pantalla4Bean implements Serializable {
         advancedModel = new DefaultMapModel();
 		SessionBean sb = FacesUtils.getManagedBean(SessionBean.class);
 		
- 		sb.setUbicacion("-34.60,-58.39");
-		List<Cerveza> tm = new ArrayList<>();
-		tm.add(stockService.getCervezas().get(0));
-		sb.setSeleccionCervezas(tm);
+// 		sb.setUbicacion("-34.60,-58.39");
+//		List<Cerveza> tm = new ArrayList<>();
+//		tm.add(stockService.getCervezas().get(0));
+//		sb.setSeleccionCervezas(tm);
 		
 		String[] strUbi = sb.getUbicacion().split(",");
 		Double radio = 5d;
@@ -75,12 +75,12 @@ public class Pantalla4Bean implements Serializable {
 			for (CervezaStock cs : lugarStock.getListCerveza()) {
 				cantCerv= cantCerv + cs.getCantidad();
 			}
-        	String mainTitle=lugarStock.getLugar().getNombre()+"|Gente:"+lugarStock.getCantidadGente()+"|Cerveza:"+cantCerv;
-            advancedModel.addOverlay(new Marker(coord1, mainTitle, lugarStock.getLugar().getUrlStreaming(), "/img/placer3.png"));
+			String mainTitle=lugarStock.getLugar().getNombre()+"|Gente:"+lugarStock.getCantidadGente()+"|Estimado:"+lugarStock.getAproximadoEspera()+"|Cerveza:"+cantCerv;
+            advancedModel.addOverlay(new Marker(coord1, mainTitle, lugarStock.getLugar().getUrlStreaming(), "../javax.faces.resource/images/pin.png.faces"));
 		}
         // donde estas parado:
-        LatLng coord1 = new LatLng(parseDouble, parseDouble2);
-        advancedModel.addOverlay(new Marker(coord1, ESTAS_ACA,"http://maps.google.com/mapfiles/ms/micons/red-dot.png" , "http://maps.google.com/mapfiles/ms/micons/red-dot.png"));
+//        LatLng coord1 = new LatLng(parseDouble, parseDouble2);
+//        advancedModel.addOverlay(new Marker(coord1, ESTAS_ACA,"http://maps.google.com/mapfiles/ms/micons/red-dot.png" , "http://maps.google.com/mapfiles/ms/micons/red-dot.png"));
         
     }
 
@@ -92,24 +92,24 @@ public class Pantalla4Bean implements Serializable {
 		this.cantidadesImg = cantidadesImg;
 	}
 
-	public void calcularImagenCantidades(){
-		int cuartil2Gente = 20;
-		int cuartil3Gente = 100;
-		
-		int cuartil2Cerveza = 150;
-		int cuartil3Cerveza = 400;
-		
-		
-		if(cuartil2Cerveza > Integer.parseInt(cantidadCerveza)  && 
-				cuartil2Gente > Integer.parseInt(cantidadGente)){
-			cantidadesImg = "/img/placer1.png";
-		}
-		if(cuartil2Cerveza > Integer.parseInt(cantidadCerveza)  && 
-				cuartil2Gente > Integer.parseInt(cantidadGente)){
-			cantidadesImg = "/img/placer1.png";
-		}		
-		
-	}
+//	public void calcularImagenCantidades(){
+//		int cuartil2Gente = 20;
+//		int cuartil3Gente = 100;
+//		
+//		int cuartil2Cerveza = 150;
+//		int cuartil3Cerveza = 400;
+//		
+//		
+//		if(cuartil2Cerveza > Integer.parseInt(cantidadCerveza)  && 
+//				cuartil2Gente > Integer.parseInt(cantidadGente)){
+//			cantidadesImg = "/img/placer1.png";
+//		}
+//		if(cuartil2Cerveza > Integer.parseInt(cantidadCerveza)  && 
+//				cuartil2Gente > Integer.parseInt(cantidadGente)){
+//			cantidadesImg = "/img/placer1.png";
+//		}		
+//		
+//	}
 	
 	public MapModel getAdvancedModel() {
 		return advancedModel;
@@ -118,17 +118,25 @@ public class Pantalla4Bean implements Serializable {
 	public void onMarkerSelect(OverlaySelectEvent event) {
 
 		marker = (Marker) event.getOverlay();
-		if (!marker.getTitle().contains(ESTAS_ACA)) {
-			String[] tmpSPlit = marker.getTitle().split("\\|");
-			titulo = tmpSPlit[0];
-			cantidadGente = tmpSPlit[1];
-			cantidadCerveza = tmpSPlit[2];
-			calcularImagenCantidades();
-		} else {
-			titulo = ESTAS_ACA;
-			cantidadGente = "--";
-			cantidadCerveza = "--";
-		}
+		String[] tmpSPlit = marker.getTitle().split("\\|");
+		titulo = tmpSPlit[0];
+		cantidadGente = tmpSPlit[1];
+		tiempoEstimado = tmpSPlit[2];
+		cantidadCerveza = tmpSPlit[3];
+		
+//		calcularImagenCantidades();
+		
+//		if (!marker.getTitle().contains(ESTAS_ACA)) {
+//			String[] tmpSPlit = marker.getTitle().split("\\|");
+//			titulo = tmpSPlit[0];
+//			cantidadGente = tmpSPlit[1];
+//			cantidadCerveza = tmpSPlit[2];
+//			calcularImagenCantidades();
+//		} else {
+//			titulo = ESTAS_ACA;
+//			cantidadGente = "--";
+//			cantidadCerveza = "--";
+//		}
 
 	}
 
@@ -174,6 +182,14 @@ public class Pantalla4Bean implements Serializable {
 
 	public Marker getMarker() {
 		return marker;
+	}
+
+	public String getTiempoEstimado() {
+		return tiempoEstimado;
+	}
+
+	public void setTiempoEstimado(String tiempoEstimado) {
+		this.tiempoEstimado = tiempoEstimado;
 	}
 
 }

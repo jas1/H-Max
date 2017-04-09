@@ -11,7 +11,7 @@
 			<div class="ui-fluid">
 				<p:gmap id="gmap" center="#{sessionBean.ubicacion}" zoom="13"
 					type="HYBRID" model="#{pantalla4Bean.advancedModel}"
-					style="width:100%;height:400px">
+					style="width:100%;height:600px">
 
 					<p:ajax event="overlaySelect"
 						listener="#{pantalla4Bean.onMarkerSelect}" />
@@ -20,17 +20,15 @@
 						<p:outputPanel
 							style="text-align: center; display: block; margin: auto">
 
-							<p:graphicImage name="#{pantalla4Bean.marker.data}" height="150" />
-							<br />
-							<h:outputText value="#{pantalla4Bean.titulo}" />
-							<br />
-							<h:outputText value="#{pantalla4Bean.cantidadGente}" />
-							<br />
-							<h:outputText value="#{pantalla4Bean.cantidadCerveza}" />
-							
-							
-							
-
+							<p:graphicImage name="#{pantalla4Bean.marker.data}" height="150" style="margin-bottom:5px;" />
+							<p:panelGrid styleClass="pgridCenter" columns="2">
+								<p:panelGrid styleClass="pgridCenter" columns="1">
+									<h:outputText value="#{pantalla4Bean.titulo}" />									
+									<h:outputText value="#{pantalla4Bean.cantidadGente}" />									
+									<h:outputText value="#{pantalla4Bean.cantidadCerveza} litros" />
+								</p:panelGrid>
+								<p:graphicImage name="images/maps/mm.png"/>
+							</p:panelGrid>
 						</p:outputPanel>
 					</p:gmapInfoWindow>
 				</p:gmap>
