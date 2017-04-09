@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.ejb.Stateless;
+
 import sample1.helpers.HelperVarios;
+import sample1.helpers.StockMockSimulator;
 import sample1.model.Cerveza;
 import sample1.model.Lugar;
 import sample1.model.LugarStock;
 
-
+@Stateless
 public class EntityManagerMock {
 
 	/* esto esta static para mockear, 
 	 * sino aca ira a la DB a buscar la data
 	 * */
-	private static List<Cerveza> cervezasTipo = new ArrayList<>();
-	private static List<Lugar> lugares = new ArrayList<>();
+	public static List<Cerveza> cervezasTipo = StockMockSimulator.listadoCervezas();
+	public static List<Lugar> lugares = StockMockSimulator.listadoLugares();
 	private static List<LugarStock> lugaresStock = new ArrayList<>();
 	
 	public List<Cerveza> getCervezasTipo(){

@@ -1,0 +1,30 @@
+Facultad de Medicina	Pasteur 706	Tel. + 54 911 4871 6070
+San Telmo – Perú	Perú 602	Tel. + 54 911 2083 0749
+San Telmo – Plaza Dorrego	Don Anselmo Aieta 1081
+Córdoba y Mario Bravo	Av. Córdoba 3573	Tel. + 54 911 2085 6098
+Paraguay y Uruguay	Paraguay 1448	Tel. + 54 911 2085 9696
+Callao y Viamonte	Callao 650	Tel. + 54 911 2091 3982
+Paraguay y Riobamba	Paraguay 1900	Tel. + 54 911 2091 9641
+Distrito Arcos	Paraguay 4979 - Centro Comercial Distrito Arcos
+Arenales	Arenales 2707
+Cañitas	Andres Arguibel 2831
+Av. de Mayo	Av de Mayo N° 702
+Buen Pastor	Avenida Hipolito Yrigoyen 325, Paseo del Buen Pastor
+Recta Martinoli	Av.Recta Martinoli 8627
+Independencia	Independencia 1073
+Maschwitz - Jardín Cervecero	Mendoza 1748, Ing. Maschwitz
+Nordelta	Centro Comercial Nordelta - Av. de los lagos 7008	Tel. + 54 911 4871 6070
+Mar del Plata	Complejo la Normandina - Bv. Maritimo Patricio Peralta Ramos 5050
+Cariló	Paseo Las Alondras - Divisadero e/Casuarina y Cerezo
+City Bell	Cantilo 1011
+Pinamar	Av. del Mar 852
+La Plata 54 y 9	Calle 54 num. 495
+La Plata 7 y 59	 Calle 59 num. 591
+Pocitos Nuevo	Luis Alberto de Herrera 1193 Av.	Tel. + 598 2622 9812
+Carrasco	Alfredo Arocena 1559	Tel. + 598 2600 5910
+Mercado del Puerto	Mercado del Puerto, Ciudad Vieja
+Matisse Mall	Parque Miramar
+Recoleta	Av. Alfredo Arocena 1559	Tel. + 0994 785341
+Carmelitas	Dr. Morra 832 esq. Hector Vera	Tel. + 0994 785341
+BeerTruck1	movil	1555531234
+BeerTruck2	movil	1553531234

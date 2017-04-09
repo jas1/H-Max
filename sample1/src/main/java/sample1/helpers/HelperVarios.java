@@ -1,5 +1,8 @@
 package sample1.helpers;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import sample1.model.Lugar;
 
 public class HelperVarios {
@@ -41,5 +44,11 @@ public class HelperVarios {
 			}
 			return false;
 		}
+	
+	public static String objectToJson(Object o){
+    	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+
+    	return gsonInstance.toJson(o) ;
+	}
 
 }

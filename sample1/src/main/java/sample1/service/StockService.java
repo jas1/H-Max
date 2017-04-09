@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
-
-import com.google.gson.JsonElement;
+import javax.inject.Inject;
 
 import sample1.dao.EntityManagerMock;
 import sample1.model.BarGrow;
@@ -22,11 +21,8 @@ import sample1.model.LugarStock;
 @Stateless
 public class StockService {
 
+	@Inject
 	private EntityManagerMock emMock;
-
-	public void cargaCervezasMock(Cerveza cer) {
-		emMock.getCervezasTipo().add(cer);
-	}
 
 	/**
 	 * devuelve los tipos de cervezas existentes
