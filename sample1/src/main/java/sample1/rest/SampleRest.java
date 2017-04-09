@@ -23,7 +23,8 @@ import sample1.service.StockService;
 
 
 @Path("/sample")
-@Produces({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON+ ";charset=utf-8" })
+//@Produces("application/json;charset=utf-8")
 public class SampleRest {
 
 	private final static Logger LOGGER = Logger.getLogger(SampleRest.class.getName());
@@ -43,13 +44,15 @@ public class SampleRest {
      * @return
      */
     @GET
-    @Path("/existentes")
-    public Response getExistentes() {
+    @Path("/cervezas")
+    public Response getCervezas() {
     	LOGGER.info("getExistentes");
     	
     	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
     	String jsonResultante = gsonInstance.toJson(stockService.getCervezas());
-    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON).status(Status.ACCEPTED).build();
+    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON)
+    			.header("Content-Type", "application/json;charset=UTF-8")
+    			.status(Status.ACCEPTED).build();
     }
     
     /**
@@ -59,7 +62,7 @@ public class SampleRest {
      * @return
      */
     @GET
-    @Path("/existentes/{idSesion}/{bargrow}")
+    @Path("/cervezas/{idSesion}/{bargrow}")
     public Response getCervezasDisponibilidad(@PathParam("idSesion") String idSesion, @PathParam("bargrow") String bargrow) {
     	LOGGER.info("getCervezasDisponibilidad");
     	
@@ -68,7 +71,9 @@ public class SampleRest {
     	BarGrow selected = BarGrow.getBarGrow(bargrow);
     	
     	String jsonResultante = gsonInstance.toJson(stockService.getCervezasDisponibilidad(selected));
-    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON).status(Status.ACCEPTED).build();
+    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON)
+    			.header("Content-Type", "application/json;charset=UTF-8")
+    			.status(Status.ACCEPTED).build();
     }
     
     /**
@@ -83,7 +88,10 @@ public class SampleRest {
     	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 
     	String jsonResultante = gsonInstance.toJson(stockService.getLugares());
-    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON).status(Status.ACCEPTED).build();
+    	return Response
+    			.ok(jsonResultante, MediaType.APPLICATION_JSON)
+    			.header("Content-Type", "application/json;charset=UTF-8")
+    			.status(Status.ACCEPTED).build();
     }
     
 //	que bares tienen growler para la ubicacion: growl + lugar a partir del: ubicacion.
@@ -91,8 +99,30 @@ public class SampleRest {
 //		
 //	}
     @GET
+    @Path("/lugaresgrowl/{x}/{y}/{tipoCervezas}")
+    public Response getLugaresGrowlerByUbicacion(@PathParam("x") Double x, @PathParam("y") Double y,@PathParam("tipoCervezas") String tipoCervezas) {
+    	LOGGER.info("getLugaresGrowlerByUbicacion");
+    	
+    	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+    	
+    	// dame la lista de cervezas segun si estan en la query.
+    	// FIXME:: desventaja si no esta en la query no va a devolver 
+//    	> lo cual seria obvio que tiene que devolver porque las cervezas estan siempre en la lista !
+//    	> sino devuelve es potencial otro origen que nos ea lo que esperamos
+    	List<Cerveza> tipoCervezasParsed = stockService.getCervezas().stream()
+    			.filter(beer-> Arrays.asList(tipoCervezas.split("-")).contains(beer.getCodigo())).collect(Collectors.toList());
+
+    	String jsonResultante = gsonInstance.toJson(stockService.getLugaresGrowlerByUbicacion(x,y, tipoCervezasParsed));
+    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON)
+    			.header("Content-Type", "application/json;charset=UTF-8")
+    			.status(Status.ACCEPTED).build();
+    }
+	
+	
+//	que bares tienen las cervezas para la ubicacion en el momento.
+    @GET
     @Path("/lugares/{x}/{y}/{tipoCervezas}")
-    public Response getLugaresGrowlerByUbicacion(@PathParam("x") Integer x, @PathParam("y") Integer y,@PathParam("tipoCervezas") String tipoCervezas) {
+    public Response getLugaresByUbicacion(@PathParam("x") Double x, @PathParam("y") Double y,@PathParam("tipoCervezas") String tipoCervezas) {
     	LOGGER.info("getLugares");
     	
     	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
@@ -105,11 +135,9 @@ public class SampleRest {
     			.filter(beer-> Arrays.asList(tipoCervezas.split("-")).contains(beer.getCodigo())).collect(Collectors.toList());
 
     	String jsonResultante = gsonInstance.toJson(stockService.getLugaresGrowlerByUbicacion(x,y, tipoCervezasParsed));
-    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON).status(Status.ACCEPTED).build();
-    }
-	
-	
-//	que bares tienen las cervezas para la ubicacion en el momento.
-    
+    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON)
+    			.header("Content-Type", "application/json;charset=UTF-8")
+    			.status(Status.ACCEPTED).build();
+    }    
 	
 }

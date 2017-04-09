@@ -37,11 +37,11 @@ public class EntityManagerMock {
 	 * @param radio expresado en km ? FIXME
 	 * @return
 	 */
-	public List<Lugar> getLugaresXY(Integer x, Integer y , Integer radio){
+	public List<Lugar> getLugaresXY(Double x, Double y , Double radio){
 		return lugares.stream().filter(lugar -> HelperVarios.filtraDistancia(lugar,x,y,radio)).collect(Collectors.toList());
 	}
 
-	public void consultarStockCervezaYgenteParaLugares(List<Lugar> lugaresXY) {
-		
+	public List<LugarStock> consultarStockCervezaYgenteParaLugares(List<Lugar> lugaresXY) {
+		return StockMockSimulator.generarLugarStockPara(lugaresXY);
 	}
 }

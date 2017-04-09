@@ -12,6 +12,15 @@ public class ServiciosRestTest {
 	
 	@Test
 	public void testRest1(){
+	//		mostrarCervezasDisponibles(); 
+
+		
+		
+			
+	}
+	
+	@Test
+	public void testRest2(){
 //		mostrarCervezasDisponibles(); 
 		
 		String probandoTipo = "tipo1-tipo2-tipo3";
@@ -20,9 +29,5 @@ public class ServiciosRestTest {
 		
 	}
 
-	private void mostrarCervezasDisponibles() {
-	}	
-	
-	
 	
 }

@@ -36,7 +36,7 @@ public class HelperVarios {
 		    return Math.sqrt(distance);
 		}
 
-	public static boolean filtraDistancia(Lugar lugar,Integer x, Integer y , Integer radio) {
+	public static boolean filtraDistancia(Lugar lugar,Double x, Double y , Double radio) {
 	//		Double distance = Math.sqrt(Math.pow((lugar.getX()-x), 2) + Math.pow((lugar.getY()-y), 2));
 			Double distance = distance(lugar.getX(),x,lugar.getY(),y);
 			if (distance <= radio) {

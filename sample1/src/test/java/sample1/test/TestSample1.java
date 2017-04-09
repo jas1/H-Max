@@ -1,5 +1,6 @@
 package sample1.test;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Test;
@@ -16,6 +17,10 @@ public class TestSample1 {
 		StockMockSimulator.listadoLugares().forEach(lug -> System.out.println(HelperVarios.objectToJson(lug)));
 		
 		StockMockSimulator.listadoCervezas().forEach(lug -> System.out.println(HelperVarios.objectToJson(lug)));
+		
+		String probandoTipo = "tipo1-tipo2-tipo3";
+		Arrays.asList(probandoTipo.split("-")).stream().forEach(System.out::println);
+
 	}
 	
 	@Test
