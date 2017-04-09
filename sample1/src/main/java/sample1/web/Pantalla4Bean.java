@@ -16,6 +16,7 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
 import sample1.common.web.FacesUtils;
+import sample1.model.BarGrow;
 import sample1.model.Cerveza;
 import sample1.model.CervezaStock;
 import sample1.model.LugarStock;
@@ -23,21 +24,26 @@ import sample1.service.StockService;
 
 @SuppressWarnings("serial")
 @ViewScoped
-@ManagedBean(name="pantalla4Bean")
+@ManagedBean(name = "pantalla4Bean")
 public class Pantalla4Bean implements Serializable {
 
+	private static final String ESTAS_ACA = "Estas Aca";
+
 	@Inject
-	StockService stockService ;
-	
+	StockService stockService;
+
 	private MapModel advancedModel;
-	  
-    private Marker marker;
-    private String cantidadGente;
-    private String cantidadCerveza;
-    private String titulo;
-    private List<LugarStock> result;
-    
-    @PostConstruct
+
+	private Marker marker;
+	private String cantidadGente;
+	private String cantidadCerveza;
+	
+	private String cantidadesImg;
+	
+	private String titulo;
+	private List<LugarStock> result;
+
+	@PostConstruct
     public void init() {
         advancedModel = new DefaultMapModel();
 		SessionBean sb = FacesUtils.getManagedBean(SessionBean.class);
@@ -49,9 +55,19 @@ public class Pantalla4Bean implements Serializable {
 		
 		String[] strUbi = sb.getUbicacion().split(",");
 		Double radio = 5d;
-
-        List<LugarStock> result = stockService.getLugaresByUbicacion(Double.parseDouble(strUbi[0]),Double.parseDouble(strUbi[1]), sb.getSeleccionCervezas(),radio);
-        
+		
+		List<LugarStock> result = new ArrayList<>();
+		double parseDouble = Double.parseDouble(strUbi[0]);
+		double parseDouble2 = Double.parseDouble(strUbi[1]);
+		switch (BarGrow.getBarGrow(sb.getGrowlerOrMesa())) {
+			case BAR:
+				result = stockService.getLugaresByUbicacion(parseDouble,parseDouble2, sb.getSeleccionCervezas(),radio);
+				break;
+			case GROW:
+				result = stockService.getLugaresGrowlerByUbicacion(parseDouble,parseDouble2, sb.getSeleccionCervezas(),radio);
+				break;
+		}
+		
         for (LugarStock lugarStock : result) {
         	LatLng coord1 = new LatLng(lugarStock.getLugar().getX(), lugarStock.getLugar().getY());
         	
@@ -60,28 +76,63 @@ public class Pantalla4Bean implements Serializable {
 				cantCerv= cantCerv + cs.getCantidad();
 			}
         	String mainTitle=lugarStock.getLugar().getNombre()+"|Gente:"+lugarStock.getCantidadGente()+"|Cerveza:"+cantCerv;
-            advancedModel.addOverlay(new Marker(coord1, mainTitle, lugarStock.getLugar().getUrlStreaming(), "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+            advancedModel.addOverlay(new Marker(coord1, mainTitle, lugarStock.getLugar().getUrlStreaming(), "/img/placer3.png"));
 		}
         // donde estas parado:
-        LatLng coord1 = new LatLng(Double.parseDouble(strUbi[0]), Double.parseDouble(strUbi[1]));
-        advancedModel.addOverlay(new Marker(coord1, "Estas Aca","" , "http://maps.google.com/mapfiles/ms/micons/red-dot.png"));
+        LatLng coord1 = new LatLng(parseDouble, parseDouble2);
+        advancedModel.addOverlay(new Marker(coord1, ESTAS_ACA,"http://maps.google.com/mapfiles/ms/micons/red-dot.png" , "http://maps.google.com/mapfiles/ms/micons/red-dot.png"));
         
     }
-  
-    public MapModel getAdvancedModel() {
-        return advancedModel;
-    }
-      
-    public void onMarkerSelect(OverlaySelectEvent event) {
-    	
-        marker = (Marker) event.getOverlay();
-        String[] tmpSPlit = marker.getTitle().split("\\|");
-        titulo = tmpSPlit[0];
-        cantidadGente = tmpSPlit[1];
-        cantidadCerveza = tmpSPlit[2];
-    }
-      
-    public String getCantidadGente() {
+
+	public String getCantidadesImg() {
+		return cantidadesImg;
+	}
+
+	public void setCantidadesImg(String cantidadesImg) {
+		this.cantidadesImg = cantidadesImg;
+	}
+
+	public void calcularImagenCantidades(){
+		int cuartil2Gente = 20;
+		int cuartil3Gente = 100;
+		
+		int cuartil2Cerveza = 150;
+		int cuartil3Cerveza = 400;
+		
+		
+		if(cuartil2Cerveza > Integer.parseInt(cantidadCerveza)  && 
+				cuartil2Gente > Integer.parseInt(cantidadGente)){
+			cantidadesImg = "/img/placer1.png";
+		}
+		if(cuartil2Cerveza > Integer.parseInt(cantidadCerveza)  && 
+				cuartil2Gente > Integer.parseInt(cantidadGente)){
+			cantidadesImg = "/img/placer1.png";
+		}		
+		
+	}
+	
+	public MapModel getAdvancedModel() {
+		return advancedModel;
+	}
+
+	public void onMarkerSelect(OverlaySelectEvent event) {
+
+		marker = (Marker) event.getOverlay();
+		if (!marker.getTitle().contains(ESTAS_ACA)) {
+			String[] tmpSPlit = marker.getTitle().split("\\|");
+			titulo = tmpSPlit[0];
+			cantidadGente = tmpSPlit[1];
+			cantidadCerveza = tmpSPlit[2];
+			calcularImagenCantidades();
+		} else {
+			titulo = ESTAS_ACA;
+			cantidadGente = "--";
+			cantidadCerveza = "--";
+		}
+
+	}
+
+	public String getCantidadGente() {
 		return cantidadGente;
 	}
 
@@ -122,7 +173,7 @@ public class Pantalla4Bean implements Serializable {
 	}
 
 	public Marker getMarker() {
-        return marker;
-    }
-	
+		return marker;
+	}
+
 }
