@@ -6,24 +6,20 @@
 	<ui:define name="main">
 		<h:form id="form">
 			<div class="ui-fluid">
-				<p:dataGrid var="cer" value="#{pantalla3BarBean.cervezas}" columns="5" layout="grid">			 
+				<p:dataGrid var="cer" value="#{pantalla3BarBean.cervezas}" columns="5" layout="grid" >			 
 			        <f:facet name="header">
-			            Cervezas
+			            <p:outputLabel style="font-size:2em" value="¿Qué cerveza/s querés tomar?" />
 			        </f:facet>			 
-			        <p:panel header="#{cer.nombre}" style="text-align:center">
+			        <p:panel header="#{cer.cerveza.nombre}" style="text-align:center" >
 			            <h:panelGrid columns="1" style="width:100%" styleClass="pgridCenter">
-			                <p:graphicImage name="#{cer.urlImagen}"/> 
-			 
-			                <h:outputText value="#{cer.descripcion}" />
-			 
-<!-- 			                <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail"> -->
-<!-- 			                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> -->
-<!-- 			                    <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" /> -->
-<!-- 			                </p:commandLink> -->
+							<p:selectBooleanCheckbox styleClass="checkboxCustom" value="#{cer.cervezaElegida}" />			            
+			                <p:graphicImage name="#{cer.cerveza.urlImagen}"/> 
+			                <h:outputText value="#{cer.cerveza.descripcion}" />
 			            </h:panelGrid>
 			        </p:panel>			 
-			    </p:dataGrid>
-			</div>
+		    	</p:dataGrid>
+		    	<p:commandButton value="Continuar" action="#{pantalla3BarBean.accionContinuar()}"/>
+		    </div>
 		</h:form>
 
 	</ui:define>

@@ -14,6 +14,7 @@ import javax.faces.model.SelectItem;
 import sample1.common.web.FacesUtils;
 import sample1.helpers.HelperVarios;
 import sample1.helpers.StockMockSimulator;
+import sample1.model.BarGrow;
 import sample1.model.Lugar;
 
 @SuppressWarnings("serial")
@@ -48,9 +49,9 @@ public class Pantalla2Bean implements Serializable {
 		if (ubicacion != null) {
 			SessionBean sb = FacesUtils.getManagedBean(SessionBean.class);
 			sb.setUbicacion(ubicacion);
-			if (sb.getGrowlerOrMesa().equalsIgnoreCase("growler")) {
+			if (sb.getGrowlerOrMesa().equalsIgnoreCase(BarGrow.GROW.name())) {
 				return "pantalla3growler";
-			} else if (sb.getGrowlerOrMesa().equalsIgnoreCase("bar")) {
+			} else if (sb.getGrowlerOrMesa().equalsIgnoreCase(BarGrow.BAR.name())) {
 				return "pantalla3bar";
 			} else {
 				//Entraron hasta acá sin el paso previo, así que no navego

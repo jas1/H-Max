@@ -1,13 +1,16 @@
 package sample1.helpers;
 
-import java.util.logging.Logger;
-
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import sample1.dao.EntityManagerMock;
+import sample1.dto.CervezaDTO;
+import sample1.model.Cerveza;
 import sample1.model.Lugar;
 
 public class HelperVarios {
@@ -78,6 +81,16 @@ public class HelperVarios {
 		// TODO Auto-generated method stub
 		LOGGER.info("FINALZIANDO SISTEMA");
 
+	}
+	
+	public static List<Cerveza> getCervezasSeleccionadas(List<CervezaDTO> cervezasDTO){
+		List<Cerveza> result = new ArrayList<Cerveza>();
+		for (CervezaDTO tmpCervezaDTO : cervezasDTO) {
+			if (tmpCervezaDTO.getCervezaElegida()) {
+				result.add(tmpCervezaDTO.getCerveza());
+			}
+		}
+		return result;
 	}
 
 }

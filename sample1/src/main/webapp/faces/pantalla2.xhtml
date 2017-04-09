@@ -9,7 +9,7 @@
 				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 				<p:panelGrid layout="grid" styleClass="ui-panelgrid-blank gridPantalla2"
 				style="background-image: url('../javax.faces.resource/images/fondopantalla2.jpg.faces');" columns="1">
-					<p:outputLabel for="ubicacion" value="Ubicación: " />
+					<p:outputLabel style="font-weight:bold;" for="ubicacion" value="Ubicación: " />
 			        <p:selectOneMenu id="ubicacion" value="#{pantalla2Bean.ubicacion}">
 			            <f:selectItem itemLabel="Elegí la más cercana" itemValue="" />
 			            <f:selectItems value="#{pantalla2Bean.lugares}" />
