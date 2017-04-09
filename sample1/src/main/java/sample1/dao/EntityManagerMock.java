@@ -41,7 +41,7 @@ public class EntityManagerMock {
 		return lugares.stream().filter(lugar -> HelperVarios.filtraDistancia(lugar,x,y,radio)).collect(Collectors.toList());
 	}
 
-	public List<LugarStock> consultarStockCervezaYgenteParaLugares(List<Lugar> lugaresXY) {
+	public List<LugarStock> getStockCervezaYgenteParaLugares(List<Lugar> lugaresXY) {
 		return StockMockSimulator.generarLugarStockPara(lugaresXY);
 	}
 }

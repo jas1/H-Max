@@ -18,11 +18,6 @@ import sample1.model.TipoLugar;
 
 public class StockMockSimulator {
 
-	
-//	public static List<LugarStock> regenerateStock(List<Lugar> lugares) {
-//		
-//	}
-	
 	public static List<LugarStock> generarLugarStockPara(List<Lugar> lugares) {
 
 		List<LugarStock> lugarStock = new ArrayList<>();
