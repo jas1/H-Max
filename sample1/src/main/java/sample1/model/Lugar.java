@@ -6,8 +6,9 @@ public class Lugar {
 	private Double x,y;
 	private String nombre; 
 	private String descripcion;
-	private String tipo; // Jardin, Bar, beertruck , fabrica, contenedor
-	
+	private TipoLugar tipo; // Jardin, Bar, beertruck , fabrica, contenedor
+	private String telefono;
+	private String grupo;
 	
 	private Boolean tieneGrowler; // si / no
 	private Boolean tieneMesas; // si / no
@@ -15,7 +16,6 @@ public class Lugar {
 	private Boolean tieneStreaming;
 	
 	private String urlStreaming;
-	
 	
 	public String getDireccion() {
 		return direccion;
@@ -53,10 +53,10 @@ public class Lugar {
 	public void setUrlStreaming(String urlStreaming) {
 		this.urlStreaming = urlStreaming;
 	}
-	public String getTipo() {
+	public TipoLugar getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(TipoLugar tipo) {
 		this.tipo = tipo;
 	}
 	public Boolean getTieneGrowler() {
@@ -76,6 +76,18 @@ public class Lugar {
 	}
 	public void setTieneStreaming(Boolean tieneStreaming) {
 		this.tieneStreaming = tieneStreaming;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public String getGrupo() {
+		return grupo;
+	}
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
 	}
 
 }
