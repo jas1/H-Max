@@ -92,5 +92,9 @@ public class HelperVarios {
 		}
 		return result;
 	}
+	
+	public static String doubleCoordToString(Double x, Double y){
+		return x + "," + y;
+	}
 
 }

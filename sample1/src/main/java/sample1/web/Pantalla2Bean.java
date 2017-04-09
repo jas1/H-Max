@@ -37,11 +37,12 @@ public class Pantalla2Bean implements Serializable {
 				// No hay que crear un nuevo item
 			} else {
 				if (grupo != "" && !grupo.contains("movil")) {
-					tmpItem = new SelectItem(grupo, grupo);
+					String tmpCoord = HelperVarios.doubleCoordToString(lugar.getX(), lugar.getY());
+					tmpItem = new SelectItem(tmpCoord, grupo);
 					lugares.add(tmpItem);
 				}
-				grupo = lugar.getGrupo();
 			}
+			grupo = lugar.getGrupo();
 		}
 	}
 	
@@ -54,13 +55,13 @@ public class Pantalla2Bean implements Serializable {
 			} else if (sb.getGrowlerOrMesa().equalsIgnoreCase(BarGrow.BAR.name())) {
 				return "pantalla3bar";
 			} else {
-				//Entraron hasta acá sin el paso previo, así que no navego
+				//Entraron hasta acï¿½ sin el paso previo, asï¿½ que no navego
 				return null;
 			}
 			
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-			          new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debe selecccionar una ubicación"));
+			          new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debe selecccionar una ubicaciï¿½n"));
 			return null;
 		}		
 	}

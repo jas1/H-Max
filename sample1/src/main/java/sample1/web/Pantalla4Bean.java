@@ -42,11 +42,11 @@ public class Pantalla4Bean implements Serializable {
         advancedModel = new DefaultMapModel();
 		SessionBean sb = FacesUtils.getManagedBean(SessionBean.class);
 		
-		sb.setUbicacion("-34.60,-58.39");
-		List<Cerveza> tm = new ArrayList<>();
-		tm.add(stockService.getCervezas().get(0));
-		sb.setSeleccionCervezas(tm);
-		
+//		sb.setUbicacion("-34.60,-58.39");
+//		List<Cerveza> tm = new ArrayList<>();
+//		tm.add(stockService.getCervezas().get(0));
+//		sb.setSeleccionCervezas(tm);
+//		
 		String[] strUbi = sb.getUbicacion().split(",");
 		Double radio = 5d;
 

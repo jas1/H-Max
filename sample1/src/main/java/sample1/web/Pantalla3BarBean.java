@@ -27,8 +27,6 @@ public class Pantalla3BarBean implements Serializable {
 	@Inject
 	StockService stockService;
 	
-	SessionBean sb;
-	
 	@PostConstruct
 	private void init(){
 		SessionBean sb = FacesUtils.getManagedBean(SessionBean.class);
@@ -41,8 +39,10 @@ public class Pantalla3BarBean implements Serializable {
 		}
 	}
 
-	public void accionContinuar(){
-		HelperVarios.getCervezasSeleccionadas(cervezas);
+	public String accionContinuar(){
+		SessionBean sb = FacesUtils.getManagedBean(SessionBean.class);
+		sb.setSeleccionCervezas(HelperVarios.getCervezasSeleccionadas(cervezas));
+		return "pantalla4";
 	}
 
 	public Cerveza getCervezaSeleccionada() {
