@@ -36,9 +36,9 @@ public class Pantalla2Bean implements Serializable {
 			if (lugar.getGrupo().equalsIgnoreCase(grupo)) {
 				// No hay que crear un nuevo item
 			} else {
-				if (grupo != "" && !grupo.contains("movil")) {
+				if (!grupo.contains("movil")) {
 					String tmpCoord = HelperVarios.doubleCoordToString(lugar.getX(), lugar.getY());
-					tmpItem = new SelectItem(tmpCoord, grupo);
+					tmpItem = new SelectItem(tmpCoord, lugar.getGrupo());
 					lugares.add(tmpItem);
 				}
 			}
@@ -51,7 +51,7 @@ public class Pantalla2Bean implements Serializable {
 			SessionBean sb = FacesUtils.getManagedBean(SessionBean.class);
 			sb.setUbicacion(ubicacion);
 			if (sb.getGrowlerOrMesa().equalsIgnoreCase(BarGrow.GROW.name())) {
-				return "pantalla3growler";
+				return "pantalla3grow";
 			} else if (sb.getGrowlerOrMesa().equalsIgnoreCase(BarGrow.BAR.name())) {
 				return "pantalla3bar";
 			} else {
@@ -61,7 +61,7 @@ public class Pantalla2Bean implements Serializable {
 			
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-			          new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debe selecccionar una ubicaci�n"));
+			          new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Debe selecccionar una ubicación"));
 			return null;
 		}		
 	}

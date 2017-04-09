@@ -35,7 +35,7 @@ public class Pantalla3BarBean implements Serializable {
 		List<Cerveza> tmpCervezas = stockService.getCervezasDisponibilidad(selected);
 		cervezas = new ArrayList<CervezaDTO>();
 		for (Cerveza cerveza : tmpCervezas) {
-			cervezas.add(new CervezaDTO(cerveza, false));
+			cervezas.add(new CervezaDTO(cerveza));
 		}
 	}
 

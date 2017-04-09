@@ -93,6 +93,16 @@ public class HelperVarios {
 		return result;
 	}
 	
+	public static List<Cerveza> getGrowlersElegidos(List<CervezaDTO> cervezasDTO){
+		List<Cerveza> result = new ArrayList<Cerveza>();
+		for (CervezaDTO tmpCervezaDTO : cervezasDTO) {
+			if (tmpCervezaDTO.getCantGrowlers() > 0) {
+				result.add(tmpCervezaDTO.getCerveza());
+			}
+		}
+		return result;
+	}
+	
 	public static String doubleCoordToString(Double x, Double y){
 		return x + "," + y;
 	}

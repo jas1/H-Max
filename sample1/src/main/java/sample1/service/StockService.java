@@ -65,7 +65,7 @@ public class StockService {
 		case BAR:
 			return emMock.getCervezasTipo().stream().filter(cer -> cer.getAptoTirada()).collect(Collectors.toList());
 		case GROW:
-			return emMock.getCervezasTipo().stream().filter(cer -> cer.getAptoGrowler()).collect(Collectors.toList());
+			return emMock.getGrowlersTipo().stream().filter(cer -> cer.getAptoGrowler()).collect(Collectors.toList());
 
 		default:
 			throw new RuntimeException("Seleccion no valida");

@@ -136,6 +136,17 @@ public class StockMockSimulator {
 			return list;
 	 }
 	
+	public static List<Cerveza> listadoGrowlers(){
+		List<Cerveza> list = new ArrayList<>();
+
+		List<String> tmp = listadoCervezasFromString();
+		list = tmp.stream()
+		.map(StockMockSimulator::convertToGrowler)
+		.collect(Collectors.toList());
+		
+		return list;
+ }
+	
 	 private static Cerveza convertToCerveza(String string) {
 			String[] tmpSplit = string.split("\t");
 			Cerveza obj = new Cerveza();
@@ -160,6 +171,29 @@ public class StockMockSimulator {
 			return obj;
 	 }
 	 
+	 private static Cerveza convertToGrowler(String string) {
+			String[] tmpSplit = string.split("\t");
+			Cerveza obj = new Cerveza();
+			//nombre	descripcion	estilo	color	abv	volumen	urlImagen
+			
+			int i = 0;
+			obj.setCodigo(tmpSplit[i++]);
+			obj.setNombre(tmpSplit[i++]);
+			obj.setDescripcion(tmpSplit[i++]);
+			obj.setEstilo(tmpSplit[i++]);
+			obj.setColor(tmpSplit[i++]);
+			obj.setAbv(tmpSplit[i++]);
+			obj.setVolumen(tmpSplit[i++]);
+//			obj.setUrlImagen(tmpSplit[i++]);
+			obj.setUrlImagen("/images/"+obj.getCodigo()+"_GROW.png");
+			
+			Random rnd = new Random();			
+			obj.setAptoBotella(true);
+			obj.setAptoTirada(true);
+			obj.setAptoGrowler(rnd.nextBoolean());
+			
+			return obj;
+	 }
 
 	 public static List<Lugar> listadoLugares(){
 //	public static void listadoLugares() {

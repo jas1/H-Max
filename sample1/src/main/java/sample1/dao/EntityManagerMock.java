@@ -19,11 +19,16 @@ public class EntityManagerMock {
 	 * sino aca ira a la DB a buscar la data
 	 * */
 	public static List<Cerveza> cervezasTipo = StockMockSimulator.listadoCervezas();
+	public static List<Cerveza> growlersTipo = StockMockSimulator.listadoGrowlers();
 	public static List<Lugar> lugares = StockMockSimulator.listadoLugares();
 	private static List<LugarStock> lugaresStock = new ArrayList<>();
 	
 	public List<Cerveza> getCervezasTipo(){
 		return cervezasTipo;
+	}
+	
+	public List<Cerveza> getGrowlersTipo(){
+		return growlersTipo;
 	}
 	
 	public List<Lugar> getLugares(){

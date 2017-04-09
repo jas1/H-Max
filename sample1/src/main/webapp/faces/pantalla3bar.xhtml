@@ -6,17 +6,20 @@
 	<ui:define name="main">
 		<h:form id="form">
 			<div class="ui-fluid">
-				<p:dataGrid var="cer" value="#{pantalla3BarBean.cervezas}" columns="5" layout="grid" >			 
-			        <f:facet name="header">
+				<p:dataGrid var="cer" value="#{pantalla3BarBean.cervezas}" columns="5" layout="grid" >		
+					<f:facet name="header">
 			            <p:outputLabel style="font-size:2em" value="¿Qué cerveza/s querés tomar?" />
-			        </f:facet>			 
+			        </f:facet>	 
+			        <p:panelGrid styleClass="ui-panelgrid-blank pgridCenter" columns="5">
+			 
 			        <p:panel header="#{cer.cerveza.nombre}" style="text-align:center" >
 			            <h:panelGrid columns="1" style="width:100%" styleClass="pgridCenter">
 							<p:selectBooleanCheckbox styleClass="checkboxCustom" value="#{cer.cervezaElegida}" />			            
 			                <p:graphicImage name="#{cer.cerveza.urlImagen}"/> 
 			                <h:outputText value="#{cer.cerveza.descripcion}" />
 			            </h:panelGrid>
-			        </p:panel>			 
+			        </p:panel>	
+			        </p:panelGrid>		 
 		    	</p:dataGrid>
 		    	<p:commandButton value="Continuar" action="#{pantalla3BarBean.accionContinuar()}"/>
 		    </div>
