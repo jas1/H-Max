@@ -57,13 +57,12 @@ public class SampleRest {
     
     /**
      * da las cervezas disponibles segun si es bar o growler
-     * @param idSesion de la sesion del cliente web.
      * @param bargrow bar o grow , para decir si esta en un bar o en un growler
      * @return
      */
     @GET
-    @Path("/cervezas/{idSesion}/{bargrow}")
-    public Response getCervezasDisponibilidad(@PathParam("idSesion") String idSesion, @PathParam("bargrow") String bargrow) {
+    @Path("/cervezas/{bargrow}")
+    public Response getCervezasDisponibilidad(@PathParam("bargrow") String bargrow) {
     	LOGGER.info("getCervezasDisponibilidad");
     	
     	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
@@ -111,8 +110,8 @@ public class SampleRest {
 //    	> sino devuelve es potencial otro origen que nos ea lo que esperamos
     	List<Cerveza> tipoCervezasParsed = stockService.getCervezas().stream()
     			.filter(beer-> Arrays.asList(tipoCervezas.split("-")).contains(beer.getCodigo())).collect(Collectors.toList());
-
-    	String jsonResultante = gsonInstance.toJson(stockService.getLugaresGrowlerByUbicacion(x,y, tipoCervezasParsed));
+    	Double radio = 5d;
+    	String jsonResultante = gsonInstance.toJson(stockService.getLugaresGrowlerByUbicacion(x,y, tipoCervezasParsed,radio));
     	
     	// problema actual el jspon generado es muy pesado para lo que es.
     	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON)
@@ -136,10 +135,33 @@ public class SampleRest {
     	List<Cerveza> tipoCervezasParsed = stockService.getCervezas().stream()
     			.filter(beer-> Arrays.asList(tipoCervezas.split("-")).contains(beer.getCodigo())).collect(Collectors.toList());
 
-    	String jsonResultante = gsonInstance.toJson(stockService.getLugaresGrowlerByUbicacion(x,y, tipoCervezasParsed));
+    	Double radio = 5d;
+    	
+    	String jsonResultante = gsonInstance.toJson(stockService.getLugaresByUbicacion(x,y, tipoCervezasParsed,radio));
     	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON)
     			.header("Content-Type", "application/json;charset=UTF-8")
     			.status(Status.ACCEPTED).build();
-    }    
+    }  
+    
+    /**
+//     * devuelve la lista de cervezas que estan disponibles en el radio de 5 km de x/y
+//     * frenado porque seria cambiar bastantes cosas a medio camino
+//     * @param x
+//     * @param y
+//     * @return
+//     */
+//    @GET
+//    @Path("/cervezas/{x}/{y}")
+//    public Response getCervezasByUbicacion(@PathParam("x") Double x, @PathParam("y") Double y) {
+//    	LOGGER.info("getLugares");
+//    	
+//    	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+//    	
+//
+//    	String jsonResultante = gsonInstance.toJson(stockService.getLugaresGrowlerByUbicacion(x,y, tipoCervezasParsed));
+//    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON)
+//    			.header("Content-Type", "application/json;charset=UTF-8")
+//    			.status(Status.ACCEPTED).build();
+//    }     
 	
 }
