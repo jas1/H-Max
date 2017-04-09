@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" template="templates/templateContainer.xhtml">
+
+	<!-- Empieza tab -->
+	<ui:define name="main">
+		<h:form id="form">
+			<div class="ui-fluid">
+				<p:dataGrid var="cer" value="#{pantalla3BarBean.cervezas}" columns="5" layout="grid">			 
+			        <f:facet name="header">
+			            Cervezas
+			        </f:facet>			 
+			        <p:panel header="#{cer.nombre}" style="text-align:center">
+			            <h:panelGrid columns="1" style="width:100%" styleClass="pgridCenter">
+			                <p:graphicImage name="#{cer.urlImagen}"/> 
+			 
+			                <h:outputText value="#{cer.descripcion}" />
+			 
+<!-- 			                <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail"> -->
+<!-- 			                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> -->
+<!-- 			                    <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" /> -->
+<!-- 			                </p:commandLink> -->
+			            </h:panelGrid>
+			        </p:panel>			 
+			    </p:dataGrid>
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
