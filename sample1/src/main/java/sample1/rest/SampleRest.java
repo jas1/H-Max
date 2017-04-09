@@ -113,6 +113,8 @@ public class SampleRest {
     			.filter(beer-> Arrays.asList(tipoCervezas.split("-")).contains(beer.getCodigo())).collect(Collectors.toList());
 
     	String jsonResultante = gsonInstance.toJson(stockService.getLugaresGrowlerByUbicacion(x,y, tipoCervezasParsed));
+    	
+    	// problema actual el jspon generado es muy pesado para lo que es.
     	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON)
     			.header("Content-Type", "application/json;charset=UTF-8")
     			.status(Status.ACCEPTED).build();

@@ -29,7 +29,7 @@ public class StockMockSimulator {
 
 		for (Lugar lugar : lugares) {
 			LugarStock tmpStock = new LugarStock();
-
+			tmpStock.setLugar(lugar);
 			// stock de birras
 			List<CervezaStock> initStock = iniciarCervezaStock(lugar);
 			tmpStock.setListCerveza(initStock);
