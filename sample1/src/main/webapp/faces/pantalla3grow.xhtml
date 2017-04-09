@@ -18,7 +18,23 @@
 			            		<p:commandButton value="+" actionListener="#{pantalla3GrowlerBean.incrementar(cer)}" update="cantidad" />
 			            	</h:panelGrid>
 			                <p:graphicImage name="#{cer.cerveza.urlImagen}"/> 
-			                <h:outputText value="#{cer.cerveza.descripcion}" />
+<!-- 			                <h:outputText value="#{cer.cerveza.descripcion}" /> -->
+			                <p:panelGrid columns="2">
+			                		<h:outputText value="Nombre:" />
+			                		<h:outputText value="#{cer.cerveza.nombre}" />
+			                		
+			            			<h:outputText value="Estilo:" />
+			                		<h:outputText value="#{cer.cerveza.estilo}" />
+
+			                		<h:outputText value="Color:" />
+			                		<h:outputText value="#{cer.cerveza.color}" />
+
+			                		<h:outputText value="Vol:" />
+			                		<h:outputText value="#{cer.cerveza.volumen}" />
+			                		
+			                		<h:outputText value="Abv:" />
+			                		<h:outputText value="#{cer.cerveza.abv}" />
+			                </p:panelGrid>
 			            </h:panelGrid>
 			        </p:panel>			 
 		    	</p:dataGrid>
