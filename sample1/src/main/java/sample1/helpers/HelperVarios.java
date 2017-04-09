@@ -1,11 +1,17 @@
 package sample1.helpers;
 
+import java.util.logging.Logger;
+
+import java.util.Comparator;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import sample1.dao.EntityManagerMock;
 import sample1.model.Lugar;
 
 public class HelperVarios {
+	private final static Logger LOGGER = Logger.getLogger(HelperVarios.class.getName());
 
 	/**
 		 * Calculate distance between two points in latitude and longitude taking
@@ -49,6 +55,29 @@ public class HelperVarios {
     	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 
     	return gsonInstance.toJson(o) ;
+	}
+	
+	public static Comparator<Lugar> comparatorByGrupo() {
+		return new Comparator<Lugar>() {
+			@Override
+			public int compare(Lugar o1, Lugar o2) {
+				return o1.getGrupo().compareTo(o2.getGrupo());
+			}
+		};
+	} 
+
+	public static void iniciarSistema() {
+		LOGGER.info("INICIANDO SISTEMA:");
+		LOGGER.info("Cervezas Disponibles:");
+		LOGGER.info(objectToJson(EntityManagerMock.cervezasTipo));
+		LOGGER.info("Lugares Disponibles:");
+		LOGGER.info(objectToJson(EntityManagerMock.lugares));
+	}
+
+	public static void finalizarSistema() {
+		// TODO Auto-generated method stub
+		LOGGER.info("FINALZIANDO SISTEMA");
+
 	}
 
 }
