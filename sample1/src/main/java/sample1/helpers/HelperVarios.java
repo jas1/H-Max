@@ -1,5 +1,7 @@
 package sample1.helpers;
 
+import java.util.Comparator;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -50,5 +52,14 @@ public class HelperVarios {
 
     	return gsonInstance.toJson(o) ;
 	}
+	
+	public static Comparator<Lugar> comparatorByGrupo() {
+		return new Comparator<Lugar>() {
+			@Override
+			public int compare(Lugar o1, Lugar o2) {
+				return o1.getGrupo().compareTo(o2.getGrupo());
+			}
+		};
+	} 
 
 }
