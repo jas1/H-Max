@@ -64,29 +64,37 @@ public class StockService {
 	// que bares tienen growler para la ubicacion: growl + lugar a partir del:
 	// ubicacion.
 	public List<LugarStock> getLugaresGrowlerByUbicacion(Integer x, Integer y, List<Cerveza> tipoCervezasParsed) {
-		List<LugarStock> ret = null;
-
+		
 		Integer radio = 5; // 1 km , TODO: ver de si lo paso por parametro o no.
 		// dame los lugares cerca de x/y
 		List<Lugar> lugaresXY = emMock.getLugaresXY(x, y, radio);
 
 		// de esos , cuales tienen cerveza de la lista.
-		emMock.consultarStockCervezaYgenteParaLugares(lugaresXY);
+		List<LugarStock> ret = emMock.consultarStockCervezaYgenteParaLugares(lugaresXY);
 		
-
-		return ret;
+		return ret.stream().filter(ls-> ls.getLugar().getTieneGrowler()).collect(Collectors.toList());
 	}
+	
 
 	/**
-	 * cerca XY es relativo asi que hay que definir que es esto.
-	 * 
+	 * por default devuelve con un radio de 5 KM
 	 * @param x
 	 * @param y
+	 * @param tipoCervezasParsed
 	 * @return
 	 */
-	private List<Lugar> buscarLugares(Integer x, Integer y) {
+	// que bares tienen growler para la ubicacion: growl + lugar a partir del:
+	// ubicacion.
+	public List<LugarStock> getLugaresByUbicacion(Integer x, Integer y, List<Cerveza> tipoCervezasParsed) {
+		
+		Integer radio = 5; // 1 km , TODO: ver de si lo paso por parametro o no.
+		// dame los lugares cerca de x/y
+		List<Lugar> lugaresXY = emMock.getLugaresXY(x, y, radio);
 
-		return null;
+		// de esos , cuales tienen cerveza de la lista.
+		List<LugarStock> ret = emMock.consultarStockCervezaYgenteParaLugares(lugaresXY);
+		
+		return ret;
 	}
 
 	// que bares tienen las cervezas para la ubicacion en el momento.

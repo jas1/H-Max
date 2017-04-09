@@ -91,7 +91,7 @@ public class SampleRest {
 //		
 //	}
     @GET
-    @Path("/lugares/{x}/{y}/{tipoCervezas}")
+    @Path("/lugaresgrowl/{x}/{y}/{tipoCervezas}")
     public Response getLugaresGrowlerByUbicacion(@PathParam("x") Integer x, @PathParam("y") Integer y,@PathParam("tipoCervezas") String tipoCervezas) {
     	LOGGER.info("getLugares");
     	
@@ -110,6 +110,22 @@ public class SampleRest {
 	
 	
 //	que bares tienen las cervezas para la ubicacion en el momento.
-    
+    @GET
+    @Path("/lugares/{x}/{y}/{tipoCervezas}")
+    public Response getLugaresByUbicacion(@PathParam("x") Integer x, @PathParam("y") Integer y,@PathParam("tipoCervezas") String tipoCervezas) {
+    	LOGGER.info("getLugares");
+    	
+    	Gson gsonInstance = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+    	
+    	// dame la lista de cervezas segun si estan en la query.
+    	// FIXME:: desventaja si no esta en la query no va a devolver 
+//    	> lo cual seria obvio que tiene que devolver porque las cervezas estan siempre en la lista !
+//    	> sino devuelve es potencial otro origen que nos ea lo que esperamos
+    	List<Cerveza> tipoCervezasParsed = stockService.getCervezas().stream()
+    			.filter(beer-> Arrays.asList(tipoCervezas.split("-")).contains(beer.getCodigo())).collect(Collectors.toList());
+
+    	String jsonResultante = gsonInstance.toJson(stockService.getLugaresGrowlerByUbicacion(x,y, tipoCervezasParsed));
+    	return Response.ok(jsonResultante, MediaType.APPLICATION_JSON).status(Status.ACCEPTED).build();
+    }    
 	
 }
