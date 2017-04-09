@@ -1,0 +1,23 @@
+.pgridCenter {
+    margin: auto;
+    text-align:center;
+}
+
+.imagenesPantalla1 {
+	max-height: 600px;
+}
+
+.gridPadding {
+	padding: 5px;
+}
+
+.outputLabelPantalla1{
+	color: #333333;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 3em !important;
+}
+
+.gridPantalla2 {
+    width:100%;
+    height:100%;
+}
