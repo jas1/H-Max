@@ -2,6 +2,8 @@ package sample1.web;
 
 import java.util.List;
 
+import sample1.model.Cerveza;
+
 /**
  * esto es para controlar el flujo de la sesion del tipo que esta interactuando. 
  * si fuese un cliente javascript el se tendria que hacer cargo de lo mismoq ue se hace aca.
@@ -14,7 +16,7 @@ public abstract class AbstractSessionBean {
 
 	private String growlerOrMesa; // seleccion entre growler o mesa.
 	private String ubicacion; // la ubicacion que selecciona
-	private List<String> seleccionCervezas; // las cervezas que selecciona
+	private List<Cerveza> seleccionCervezas; // las cervezas que selecciona
 //	private String reserva; // no tengo idea >> no hay reservas solo interesa la cantidad de gentes.
 	private String idSesion; // sesion del usuario // trabajos futuros > que sea trackeable.
 	
@@ -24,10 +26,10 @@ public abstract class AbstractSessionBean {
 	public void setGrowlerOrMesa(String growlerOrMesa) {
 		this.growlerOrMesa = growlerOrMesa;
 	}
-	public List<String> getSeleccionCervezas() {
+	public List<Cerveza> getSeleccionCervezas() {
 		return seleccionCervezas;
 	}
-	public void setSeleccionCervezas(List<String> seleccionCervezas) {
+	public void setSeleccionCervezas(List<Cerveza> seleccionCervezas) {
 		this.seleccionCervezas = seleccionCervezas;
 	}
 	public String getIdSesion() {

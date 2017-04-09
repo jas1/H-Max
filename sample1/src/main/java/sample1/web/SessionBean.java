@@ -7,7 +7,7 @@ import javax.faces.bean.SessionScoped;
 
 @SuppressWarnings("serial")
 @SessionScoped
-@ManagedBean
+@ManagedBean(name="sessionBean")
 public class SessionBean extends AbstractSessionBean implements Serializable {
 
 }

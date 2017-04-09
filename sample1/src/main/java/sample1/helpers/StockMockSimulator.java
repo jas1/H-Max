@@ -258,6 +258,10 @@ public class StockMockSimulator {
 		obj.setX(Double.valueOf(tmpSplit[4]));
 		
 		obj.setY(Double.valueOf(tmpSplit[5]));
+//		https://www.youtube.com/watch?v=bw8Nb-km3ws
+//		obj.setUrlStreaming("https://www.youtube.com/v/bw8Nb-km3ws&amp;hl=en&amp;fs=1&amp;");
+		obj.setUrlStreaming("images/callaoyviamonte.jpg");
+		
 
 		return obj;
 	}
