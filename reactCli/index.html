@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>React Flux</title>
+<meta charset="utf-8" />
+<script src="https://unpkg.com/react@latest/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+
+<!--         agarrado del tuto:  -->
+<!-- http://4dev.tech/2015/12/react-js-tutorial-consuming-javaee-restful-web-services/ -->
+<!-- 	    deprecated en la version: -->
+<!-- https://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html -->
+<!--         <script src="https://fb.me/react-0.13.3.js"></script> -->
+<!--         <script src="https://fb.me/JSXTransformer-0.13.3.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div id="component"></div>
+<!--         <script type="text/jsx"> -->
+	<script type="text/babel"> 
+            var Sample1Cerveza = React.createClass({
+                getInitialState: function () {
+                    return {text: ''};
+                },
+                componentDidMount: function(){
+                    $.ajax({
+                        url: "http://localhost:8080/sample1/rest/sample/cervezas"
+                    }).then(function(data) {
+                        this.setState({text: data});
+                    }).bind(this)
+                },
+                render: function() {
+                    return <div>Response - {this.state.text}</div>;
+                }
+            });
+ 
+            ReactDOM.render(<Sample1Cerveza />, document.getElementById('component'));
+ 
+        </script>
+</body>
+</html>
