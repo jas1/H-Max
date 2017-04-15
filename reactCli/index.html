@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>React Flux</title>
+<title>Birras!</title>
+<link rel="stylesheet" type="text/css" media="all" href="css/template.css">
 <meta charset="utf-8" />
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/react@latest/dist/react.js"></script>
 <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
-
+<!-- otro tuto por las request -->
+<!-- http://mediatemple.net/blog/tips/loading-and-using-external-data-in-react/ -->
 <!--         agarrado del tuto:  -->
 <!-- http://4dev.tech/2015/12/react-js-tutorial-consuming-javaee-restful-web-services/ -->
 <!-- 	    deprecated en la version: -->
@@ -18,26 +20,52 @@
 </head>
 <body>
 	<div id="component"></div>
-<!--         <script type="text/jsx"> -->
 	<script type="text/babel"> 
-            var Sample1Cerveza = React.createClass({
-                getInitialState: function () {
-                    return {text: ''};
-                },
-                componentDidMount: function(){
-                    $.ajax({
-                        url: "http://localhost:8080/sample1/rest/sample/cervezas"
-                    }).done(function(data) {
-						// console.log(JSON.parse(data)[0].codigo);
-						this.state.text = JSON.parse(data); 
-                    })
-                },
-                render: function() {
-                    return <div>Response - {this.state.text}</div>;
-                }
-            });
- 
-            ReactDOM.render(<Sample1Cerveza />, document.getElementById('component'));
+
+
+var Sample1Cerveza = React.createClass({
+   getInitialState: function () {
+	   return {birras: []};
+   },
+   componentDidMount: function(){
+	var _this = this;
+	this.serverRequest = 
+      axios
+        .get("http://localhost:8080/sample1/rest/sample/cervezas")
+        .then(function(result) {    
+          _this.setState({
+            birras: result.data
+          });
+        })
+	},
+
+	componentWillUnmount: function() {
+		this.serverRequest.abort();
+	},
+	
+	render: function() {
+		return (
+		  <div>
+			<h1>Birras!</h1>
+			{this.state.birras.map(function(birra) {
+			  return (
+				<div key={birra.codigo} className="birra">
+					<div className="birraItem"><span className="label">Img</span><span><a href={birra.urlImagen}>img</a></span></div>
+					<div className="birraItem"><span className="label">nombre</span><span className="value">{birra.nombre}</span></div>
+					<div className="birraItem"><span className="label">estilo</span><span className="value">{birra.estilo}</span></div>
+					<div className="birraItem"><span className="label">color</span><span className="value">{birra.color}</span></div>
+					<div className="birraItem"><span className="label">abv</span><span className="value">{birra.abv}</span></div>
+					<div className="birraItem"><span className="label">volumen</span><span className="value">{birra.volumen}</span></div>
+					<div className="birraItem"><span className="label">color</span><span className="value">{birra.color}</span></div>
+				</div>
+			  );
+			})}
+		  </div>
+		)
+	  }
+});
+
+ReactDOM.render(<Sample1Cerveza />, document.getElementById('component'));
  
         </script>
 </body>

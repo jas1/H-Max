@@ -1,0 +1,4 @@
+.birra{display: inline-block;border: thin dotted #ff9999; width: 10%; height: 20%}
+.birraItem { display: block; height: 50px;}
+.label { font-weight: bold;display: inline;}
+.value { color:#ff3333;display: inline;}
